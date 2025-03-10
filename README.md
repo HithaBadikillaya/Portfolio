@@ -16,7 +16,7 @@ Node.js (v14 or later recommended)
 npm or yarn
 
 # Installation
-Clone the Repository:
+Clone the Repository: \n
 Install Dependencies:
 Set Up Environment Variables:
 Running the Application:
