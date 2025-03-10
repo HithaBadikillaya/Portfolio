@@ -16,9 +16,9 @@ Node.js (v14 or later recommended)
 npm or yarn
 
 # Installation
-Clone the Repository: \n
-Install Dependencies:
-Set Up Environment Variables:
-Running the Application:
+- Clone the Repository
+- Install Dependencies
+- Set Up Environment Variables
+- Running the Application
 To start the development server, run:
 npm run dev
