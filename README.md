@@ -17,8 +17,9 @@ npm or yarn
 
 # Installation
 - Clone the Repository
+git clone [url]
 - Install Dependencies
-- Set Up Environment Variables
+npm i
 - Running the Application
 To start the development server, run:
 npm run dev
