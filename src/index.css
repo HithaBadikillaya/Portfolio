@@ -1,7 +1,46 @@
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "JetBrains Mono", "Fira Code", monospace;
+  /* Re-purposing serif var for Mono headers */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --color-primary: #f2f0e6;
+  --color-secondary: #d4b483;
+  --color-paper: #111111;
+  /* Darker technical background */
+
+  --text-primary: var(--color-primary);
+  --text-secondary: #888888;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-primary font-sans antialiased overflow-x-hidden;
+    cursor: none;
+    /* Hide default cursor for the custom one */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
+/* Custom Scrollbar for Magazine Style */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-paper;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary/30 rounded-full hover:bg-secondary/50 transition-colors;
 }
