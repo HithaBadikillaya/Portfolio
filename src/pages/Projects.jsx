@@ -36,8 +36,6 @@ const commitLog = [
 
 const Projects = () => {
 
-    const GH_USER = 'HithaBadikillaya';
-
     const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
     return (
@@ -94,7 +92,7 @@ const Projects = () => {
                     {projects.map((project, idx) => (
                         <a
                             key={project.id}
-                            href={`https://github.com/${GH_USER}/${slugify(project.title)}`}
+                            href={`https://github.com/HithaBadikillaya/${slugify(project.title)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group col-span-12"
@@ -211,7 +209,7 @@ const Projects = () => {
 
             <div className="mt-16 text-center">
                 <p className="text-xs font-mono text-secondary opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                    &gt;  Feeling adventurous? Try moving 2 up and 2 down 
+                    &gt;  Feeling adventurous? might want to look closely at the footer
                 </p>
             </div>
 
@@ -219,7 +217,7 @@ const Projects = () => {
             <div className="mt-12 border border-white/10 rounded-sm overflow-hidden bg-white/5 p-8 text-center">
                 <h3 className="text-xl font-serif text-primary mb-4">Want more chaos?</h3>
                 <p className="text-primary/60 mb-6">If you liked poking things, I break even more projects on my GitHub.</p>
-                <a href={`https://github.com/${GH_USER}`} target="_blank" rel="noopener noreferrer" className="inline-block text-xs uppercase tracking-widest font-bold text-secondary hover:text-primary border border-secondary/30 px-6 py-3 transition-colors">
+                <a href={`https://github.com/HithaBadikillaya`} target="_blank" rel="noopener noreferrer" className="inline-block text-xs uppercase tracking-widest font-bold text-secondary hover:text-primary border border-secondary/30 px-6 py-3 transition-colors">
                     Visit my GitHub — it&apos;s a museum of workarounds
                 </a>
             </div>

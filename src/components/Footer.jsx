@@ -1,10 +1,3 @@
-// React runtime automatic; no imports needed here
-
-/**
- * Footer Component
- * 
- * Why: Strong visual identity to cap off the editorial experience.
- */
 export const Footer = () => {
   return (
     <footer id="site-footer" className="mt-12 border-t border-primary/10 py-12 px-6 md:px-12 lg:px-48 bg-primary text-paper">
@@ -12,9 +5,8 @@ export const Footer = () => {
         <div className="space-y-8">
           <h2 className="text-5xl md:text-7xl font-sans text-bg-secondary tracking-tight">Hitha Badikillaya.</h2>
           <p className="max-w-xs text-[10px] md:text-xs uppercase tracking-widest leading-loose opacity-60">
-            Full Stack Developer & Open Source Advocate.
-            Engineering reliable systems in India.
-          </p>
+            Full Stack Developer & Open Source Contributor.
+         </p>
         </div>
 
         <div className="grid grid-cols-2 gap-8 md:gap-12 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold w-full lg:w-auto">
@@ -23,14 +15,13 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li><a href="/" className="hover:text-secondary transition-colors">Index</a></li>
               <li><a href="/projects" className="hover:text-secondary transition-colors">Works</a></li>
-              <li><a href="/about" className="hover:text-secondary transition-colors">About</a></li>
               <li><a href="/experience" className="hover:text-secondary transition-colors">Experience</a></li>
             </ul>
           </div>
           <div className="space-y-4">
             <p className="opacity-30">Social</p>
             <ul className="space-y-3">
-              <li><a href="https://linkedin.com/in/hitha-badikillaya" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">LinkedIn</a></li>
+              <li><a href="https://linkedin.com/in/hithabadikillaya" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">LinkedIn</a></li>
               <li><a href="https://github.com/HithaBadikillaya" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">GitHub</a></li>
               <li><a href="mailto:hithabadikillaya@gmail.com" className="hover:text-secondary transition-colors">Email</a></li>
             </ul>

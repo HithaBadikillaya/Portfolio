@@ -6,23 +6,23 @@ const experiences = [
         year: '2025-09',
         role: 'Core Team Member',
         company: 'SOSC',
-        desc: 'Leading community initiatives and technical workshops.'
-    },
+        desc: 'Contributing to community-driven and open-source projects using structured Git workflows and peer collaboration.'    },
     {
         id: 'commit-2',
         year: '2025-02',
         role: 'Web Development Intern',
         company: 'Zidio Development',
-        desc: 'Implemented scalable frontend architectures and optimized performance.'
+        desc: 'Developed a real-time meeting platform with a distributed intern team. Implemented low-latency features using Socket.io and optimized frontend and backend workflows.'
     },
     {
         id: 'commit-1',
         year: '2024-06',
         role: 'Full Stack Dev Intern',
         company: 'Codelab Systems',
-        desc: 'Full stack implementation of client requirements using MERN stack.'
+        desc: 'Built a production-grade web app with React.js and Node.js. Integrated backend services with MongoDB and ensured responsive UI across devices.'
     },
 ];
+
 
 const Experience = () => {
     return (
@@ -85,14 +85,14 @@ const Experience = () => {
                     <h3 className="text-xl font-mono text-secondary mb-8">&gt; education --list</h3>
                     <div className="space-y-4 font-mono text-sm">
                         <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
-                            <span className="text-green-500 block mb-2 text-xs">status: success</span>
+                            <span className="text-green-500 block mb-2 text-xs">status: ongoing</span>
                             <h4 className="font-bold text-primary mb-1">B.E. Computer Science</h4>
-                            <p className="text-primary/50 text-xs">Sahyadri College of Engineering</p>
+                            <p className="text-primary/50 text-xs">Sahyadri College of Engineering And Management</p>
                         </div>
                         <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
-                            <span className="text-green-500 block mb-2 text-xs">status: success</span>
+                            <span className="text-green-500 block mb-2 text-xs">status: completed</span>
                             <h4 className="font-bold text-primary mb-1">Diploma in CS</h4>
-                            <p className="text-primary/50 text-xs">Vivekananda Polytechnic</p>
+                            <p className="text-primary/50 text-xs">Vivekananda Polytechnic Puttur</p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const Experience = () => {
                         <p>├── <span className="text-secondary">backend@stable</span></p>
                         <p>│   ├── Node.js</p>
                         <p>│   ├── MongoDB</p>
-                        <p>│   └── PostgreSQL</p>
+                        <p>│   └── MySQL</p>
                         <p>└── <span className="text-secondary">tools@dev</span></p>
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;├── Git</p>
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;└── Docker</p>

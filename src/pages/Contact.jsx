@@ -43,7 +43,6 @@ const Contact = () => {
         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-        // Prepare template params with reply-to and fallback fields
         const templateParams = {
             from_name: trimmedName,
             message: trimmedMessage,
@@ -51,37 +50,29 @@ const Contact = () => {
             reply_to: trimmedEmail,
         };
 
-        // If EmailJS is configured, use it. Otherwise fall back to mailto.
-        if (serviceId && templateId && publicKey) {
-            setIsSending(true);
-            try {
-                await send(serviceId, templateId, templateParams, publicKey);
-
-                setIsSending(false);
-                setSubmitted(true);
-                setName(''); setEmail(''); setMessage('');
-                setToast({ show: true, message: 'Mail sent — thanks!', type: 'success' });
-                setTimeout(() => setToast((t) => ({ ...t, show: false })), 4000);
-                setTimeout(() => setSubmitted(false), 5000);
-            } catch (err) {
-                setIsSending(false);
-                console.error('EmailJS send failed', err);
-                setToast({ show: true, message: 'Failed to send via EmailJS. Falling back to mail client.', type: 'error' });
-                setTimeout(() => setToast((t) => ({ ...t, show: false })), 6000);
-
-                // Fallback to mail client with sanitized values
-                const subject = encodeURIComponent(`Contact from ${trimmedName}`);
-                const body = encodeURIComponent(`${trimmedMessage}\n\nFrom: ${trimmedName} <${trimmedEmail}>`);
-                window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
-            }
-
+        // Ensure EmailJS configuration is present
+        if (!serviceId || !templateId || !publicKey) {
+            setToast({ show: true, message: 'Please try again later.', type: 'error' });
+            setTimeout(() => setToast((t) => ({ ...t, show: false })), 5000);
             return;
         }
 
-        // If EmailJS not configured, fallback to mail client
-        const subject = encodeURIComponent(`Contact from ${trimmedName || 'Website Visitor'}`);
-        const body = encodeURIComponent(`${trimmedMessage}\n\nFrom: ${trimmedName || ''} <${trimmedEmail || ''}>`);
-        window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
+        setIsSending(true);
+        try {
+            await send(serviceId, templateId, templateParams, publicKey);
+
+            setIsSending(false);
+            setSubmitted(true);
+            setName(''); setEmail(''); setMessage('');
+            setToast({ show: true, message: 'Mail sent — i will get back to you soon!', type: 'success' });
+            setTimeout(() => setToast((t) => ({ ...t, show: false })), 4000);
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (err) {
+            setIsSending(false);
+            console.error('EmailJS send failed', err);
+            setToast({ show: true, message: 'Failed to send message. Please try again later.', type: 'error' });
+            setTimeout(() => setToast((t) => ({ ...t, show: false })), 6000);
+        }
     };
 
     return (
@@ -97,7 +88,6 @@ const Contact = () => {
                 <meta name="twitter:description" content="Initialize connection." />
             </>
 
-            {/* Toast notification (styled to match theme) */}
             <div aria-live="polite">
                 {toast.show && (
                     <div className="fixed top-6 right-6 z-50 w-auto">
@@ -231,7 +221,7 @@ const Contact = () => {
             </div>
 
             <div className="mt-12 text-center text-primary/30 font-mono text-xs">
-                <p>Designed for secure communication channels (HTTPS protected).</p>
+                <p>Let me know if you could access the vault. i&apos;d love to hear your thoughts!</p>
                 <p>hithabadikillaya@gmail.com // Ping me, I&apos;ll Ack.</p>
             </div>
         </div>

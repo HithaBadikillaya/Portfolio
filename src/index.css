@@ -2,15 +2,12 @@
 
 @theme {
   --font-serif: "JetBrains Mono", "Fira Code", monospace;
-  /* Re-purposing serif var for Mono headers */
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
   --color-primary: #f2f0e6;
   --color-secondary: #d4b483;
   --color-paper: #111111;
-  /* Darker technical background */
-
   --text-primary: var(--color-primary);
   --text-secondary: #888888;
 }
@@ -32,7 +29,7 @@
   }
 }
 
-/* Custom Scrollbar for Magazine Style */
+/* Custom Scrollbar*/
 ::-webkit-scrollbar {
   width: 6px;
 }
