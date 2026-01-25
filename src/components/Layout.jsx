@@ -137,7 +137,7 @@ export const Layout = ({ children }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={pathname === '/vault' ? '' : 'relative pt-24 pb-32 px-6 md:px-12 lg:px-48'}
+                className={pathname === '/vault' ? '' : 'relative pt-24 pb-12 px-6 md:px-12 lg:px-48'}
             >
                 {children}
             </motion.main>

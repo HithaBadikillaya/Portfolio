@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
  */
 export const Footer = () => {
   return (
-    <footer className="mt-40 border-t border-primary/10 py-20 px-6 md:px-12 lg:px-48 bg-primary text-paper">
+    <footer id="site-footer" className="mt-12 border-t border-primary/10 py-12 px-6 md:px-12 lg:px-48 bg-primary text-paper">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20">
         <div className="space-y-8">
           <h2 className="text-5xl md:text-7xl font-sans text-bg-secondary tracking-tight">Hitha Badikillaya.</h2>
@@ -39,7 +39,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-20 md:mt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-paper/10 pt-12 text-[10px] uppercase tracking-widest opacity-40 text-center md:text-left">
+      <div className="mt-8 md:mt-12 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-paper/10 pt-10 text-[10px] uppercase tracking-widest opacity-40 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start gap-2">
           <p>© 2026 Hitha Badikillaya</p>
           <p className="opacity-40 hover:opacity-100 transition-opacity cursor-help hidden md:block">Sequence: ↑ ↑ ↓ ↓</p>
