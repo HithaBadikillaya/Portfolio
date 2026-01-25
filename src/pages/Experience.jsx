@@ -1,6 +1,4 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { SEO } from '../components/SEO';
 
 const experiences = [
     {
@@ -29,7 +27,16 @@ const experiences = [
 const Experience = () => {
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
-            <SEO title="Experience" description="Career history." />
+            <>
+                <title>Experience | Hitha Portfolio</title>
+                <meta name="description" content="Career history." />
+                <meta property="og:title" content="Experience | Hitha Portfolio" />
+                <meta property="og:description" content="Career history." />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Experience | Hitha Portfolio" />
+                <meta name="twitter:description" content="Career history." />
+            </>
 
             <div className="mb-12">
                 <span className="text-secondary font-mono text-xs tracking-widest block mb-4">

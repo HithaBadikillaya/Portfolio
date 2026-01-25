@@ -1,5 +1,5 @@
-import React from 'react';
 import { Card } from 'pixel-retroui';
+import PropTypes from 'prop-types';
 
 const StatusCard = ({ yellowAccent }) => {
     return (
@@ -21,7 +21,7 @@ const StatusCard = ({ yellowAccent }) => {
                     </p>
                 </div>
                 <p className="font-bold text-sm md:text-base leading-relaxed text-white/90">
-                    Warning: This developer runs on caffeine, impostor syndrome, and the hope that nobody reads the commit history too closely.
+                Heads up: Powered by low-grade panic and commits that made sense briefly
                 </p>
             </Card>
         </div>
@@ -29,3 +29,7 @@ const StatusCard = ({ yellowAccent }) => {
 };
 
 export default StatusCard;
+
+StatusCard.propTypes = {
+    yellowAccent: PropTypes.string.isRequired,
+};

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Card } from 'pixel-retroui';
+import PropTypes from 'prop-types';
 
 const NeedsCard = ({ yellowAccent }) => {
     return (
@@ -15,15 +15,15 @@ const NeedsCard = ({ yellowAccent }) => {
                     </p>
                     <ul className="space-y-4 font-bold text-xs md:text-sm">
                         <li className="flex justify-between gap-4 items-center border-b border-white/5 pb-2">
-                            <span className="text-white/70 tracking-widest">COFFEE</span>
+                            <span className="text-white/70 tracking-widest">LAPTOP</span>
                             <span className="text-yellow-400 px-2 py-0.5 text-[10px] font-black uppercase tracking-widest border border-yellow-400" style={{ backgroundColor: 'transparent' }}>MANDATORY</span>
                         </li>
                         <li className="flex justify-between gap-4 items-center border-b border-white/5 pb-2">
                             <span className="text-white/70 tracking-widest">SPOTIFY</span>
-                            <span className="italic lowercase text-white/85">lofi_beats_essential</span>
+                            <span className="italic lowercase text-white/85">dont even ask</span>
                         </li>
                         <li className="flex justify-between gap-4 items-center border-b border-white/5 pb-2">
-                            <span className="text-white/70 tracking-widest">STACK_OVERFLOW</span>
+                            <span className="text-white/70 tracking-widest">DOCS</span>
                             <span className="text-white/90 border-b-2" style={{ borderColor: yellowAccent }}>LIFELINE</span>
                         </li>
                         <li className="flex justify-between gap-4 items-center transition-all hover:translate-x-1">
@@ -39,3 +39,7 @@ const NeedsCard = ({ yellowAccent }) => {
 };
 
 export default NeedsCard;
+
+NeedsCard.propTypes = {
+    yellowAccent: PropTypes.string.isRequired,
+};

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { SEO } from '../components/SEO';
 
 const projects = [
     {
@@ -37,9 +35,6 @@ const commitLog = [
 ];
 
 const Projects = () => {
-    // Fake hydration for hydration error prevention
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => setMounted(true), []);
 
     const GH_USER = 'HithaBadikillaya';
 
@@ -47,7 +42,16 @@ const Projects = () => {
 
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
-            <SEO title="Projects" description="Directory of works." />
+            <>
+                <title>Projects | Hitha Portfolio</title>
+                <meta name="description" content="Directory of works." />
+                <meta property="og:title" content="Projects | Hitha Portfolio" />
+                <meta property="og:description" content="Directory of works." />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Projects | Hitha Portfolio" />
+                <meta name="twitter:description" content="Directory of works." />
+            </>
 
             {/* Header Area */}
             <div className="mb-12 flex flex-col md:flex-row justify-between md:items-end gap-6">
@@ -149,7 +153,7 @@ const Projects = () => {
                         {commitLog.map((log, i) => (
                             <div key={i} className="flex gap-4 text-primary/70 border-b border-white/5 last:border-0 pb-2 last:pb-0">
                                 <span className="text-yellow-500 w-16 opacity-70">{log.hash}</span>
-                                <span className="flex-1 truncate">"{log.msg}"</span>
+                                <span className="flex-1 truncate">&quot;{log.msg}&quot;</span>
                                 <span className="text-primary/30 text-right">{log.time}</span>
                             </div>
                         ))}
@@ -207,7 +211,7 @@ const Projects = () => {
 
             <div className="mt-16 text-center">
                 <p className="text-xs font-mono text-secondary opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                    &gt; sudo make me a sandwich
+                    &gt;  Feeling adventurous? Try moving 2 up and 2 down 
                 </p>
             </div>
 
@@ -216,7 +220,7 @@ const Projects = () => {
                 <h3 className="text-xl font-serif text-primary mb-4">Want more chaos?</h3>
                 <p className="text-primary/60 mb-6">If you liked poking things, I break even more projects on my GitHub.</p>
                 <a href={`https://github.com/${GH_USER}`} target="_blank" rel="noopener noreferrer" className="inline-block text-xs uppercase tracking-widest font-bold text-secondary hover:text-primary border border-secondary/30 px-6 py-3 transition-colors">
-                    Visit my GitHub — it's a museum of workarounds
+                    Visit my GitHub — it&apos;s a museum of workarounds
                 </a>
             </div>
         </div>

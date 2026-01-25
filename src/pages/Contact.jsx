@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { send } from '@emailjs/browser';
-import { SEO } from '../components/SEO';
 
 const Contact = () => {
     const [submitted, setSubmitted] = useState(false);
@@ -22,21 +21,41 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Basic validation & sanitization
+        const trimmedName = name.trim().slice(0, 100);
+        const trimmedEmail = email.trim().slice(0, 254);
+        const trimmedMessage = message.trim().slice(0, 5000);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+            setToast({ show: true, message: 'Please complete all fields.', type: 'error' });
+            setTimeout(() => setToast((t) => ({ ...t, show: false })), 3000);
+            return;
+        }
+
+        if (!emailRegex.test(trimmedEmail)) {
+            setToast({ show: true, message: 'Please provide a valid email address.', type: 'error' });
+            setTimeout(() => setToast((t) => ({ ...t, show: false })), 3000);
+            return;
+        }
+
         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        // Prepare template params with reply-to and fallback fields
+        const templateParams = {
+            from_name: trimmedName,
+            message: trimmedMessage,
+            from_email: trimmedEmail,
+            reply_to: trimmedEmail,
+        };
 
         // If EmailJS is configured, use it. Otherwise fall back to mailto.
         if (serviceId && templateId && publicKey) {
             setIsSending(true);
             try {
-                // send template params matching your template: from_name, message, from_email, user_email
-                await send(serviceId, templateId, {
-                    from_name: name,
-                    message: message,
-                    from_email: email,
-                    user_email: email,
-                }, publicKey);
+                await send(serviceId, templateId, templateParams, publicKey);
 
                 setIsSending(false);
                 setSubmitted(true);
@@ -47,22 +66,36 @@ const Contact = () => {
             } catch (err) {
                 setIsSending(false);
                 console.error('EmailJS send failed', err);
-                setToast({ show: true, message: 'Failed to send via EmailJS. Check EmailJS dashboard.', type: 'error' });
+                setToast({ show: true, message: 'Failed to send via EmailJS. Falling back to mail client.', type: 'error' });
                 setTimeout(() => setToast((t) => ({ ...t, show: false })), 6000);
+
+                // Fallback to mail client with sanitized values
+                const subject = encodeURIComponent(`Contact from ${trimmedName}`);
+                const body = encodeURIComponent(`${trimmedMessage}\n\nFrom: ${trimmedName} <${trimmedEmail}>`);
+                window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
             }
 
             return;
         }
 
         // If EmailJS not configured, fallback to mail client
-        const subject = encodeURIComponent(`Contact from ${name || 'Website Visitor'}`);
-        const body = encodeURIComponent(`${message}\n\nFrom: ${name || ''} <${email || ''}>`);
+        const subject = encodeURIComponent(`Contact from ${trimmedName || 'Website Visitor'}`);
+        const body = encodeURIComponent(`${trimmedMessage}\n\nFrom: ${trimmedName || ''} <${trimmedEmail || ''}>`);
         window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
     };
 
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-5xl mx-auto flex flex-col justify-center">
-            <SEO title="Contact" description="Initialize connection." />
+            <>
+                <title>Contact | Hitha Portfolio</title>
+                <meta name="description" content="Initialize connection." />
+                <meta property="og:title" content="Contact | Hitha Portfolio" />
+                <meta property="og:description" content="Initialize connection." />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Contact | Hitha Portfolio" />
+                <meta name="twitter:description" content="Initialize connection." />
+            </>
 
             {/* Toast notification (styled to match theme) */}
             <div aria-live="polite">
@@ -115,11 +148,13 @@ const Contact = () => {
                                 className="space-y-6 max-w-2xl"
                             >
                                 <div className="space-y-2">
-                                    <label className="block text-secondary text-xs">root@hitha:~/contact# enter_identity</label>
+                                    <label htmlFor="name-input" className="block text-secondary text-xs">root@hitha:~/contact# enter_identity</label>
                                     <div className="flex items-center gap-2">
                                         <span className="text-green-500">&gt;</span>
                                         <input
+                                            id="name-input"
                                             required
+                                            aria-required="true"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
@@ -129,12 +164,14 @@ const Contact = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-secondary text-xs">root@hitha:~/contact# enter_email</label>
+                                    <label htmlFor="email-input" className="block text-secondary text-xs">root@hitha:~/contact# enter_email</label>
                                     <div className="flex items-center gap-2">
                                         <span className="text-green-500">&gt;</span>
                                         <input
+                                            id="email-input"
                                             type="email"
                                             required
+                                            aria-required="true"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
@@ -144,11 +181,13 @@ const Contact = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-secondary text-xs">root@hitha:~/contact# define_payload</label>
+                                    <label htmlFor="message-input" className="block text-secondary text-xs">root@hitha:~/contact# define_payload</label>
                                     <div className="flex items-start gap-2">
                                         <span className="text-green-500 mt-1">&gt;</span>
                                         <textarea
+                                            id="message-input"
                                             required
+                                            aria-required="true"
                                             rows={4}
                                             value={message}
                                             onChange={(e) => setMessage(e.target.value)}

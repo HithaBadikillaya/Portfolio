@@ -11,14 +11,14 @@ const ChangelogSection = ({ yellowAccent }) => {
                     <p className="font-black not-italic uppercase tracking-widest text-lg inline-block text-black" style={{ backgroundColor: yellowAccent, padding: '2px 6px' }}>v1.0.42</p>
                     <ul className="space-y-3 text-white/85">
                         <li className="flex gap-2"><span>-</span> <span>fixed that weird bug (dont ask how)</span></li>
-                        <li className="flex gap-2"><span>-</span> <span>renamed variables bc past me had zero chill</span></li>
+                        <li className="flex gap-2"><span>-</span> <span>renamed variables cuz past me had zero chill</span></li>
                         <li className="flex gap-2"><span>-</span> <span>added comments (will delete later)</span></li>
                     </ul>
                 </Card>
             </div>
             <div className="flex items-center justify-center p-8 border-4 border-dashed border-white/10 hover:border-white/30 transition-all cursor-help group rounded-xl bg-white/[0.02]">
                 <p className="opacity-60 italic font-bold text-center text-xs md:text-base group-hover:opacity-100 transition-opacity leading-relaxed text-white/70">
-                    // TODO: delete this entire section <br className="hidden md:block" /> before job interviews
+                    // TODO: delete this entire section <br className="hidden md:block" /> before someone competant sees it
                 </p>
             </div>
         </div>

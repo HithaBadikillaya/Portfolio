@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Navigation, MobileNav } from './Navigation';
 import { CustomCursor } from './CustomCursor';
 import { Footer } from './Footer';
+import PropTypes from 'prop-types';
 
 export const Layout = ({ children }) => {
     const { pathname } = useLocation();
@@ -11,6 +12,7 @@ export const Layout = ({ children }) => {
     const { scrollYProgress } = useScroll();
     const [clickCount, setClickCount] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const yellowAccent = '#FFD700';
 
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -28,6 +30,15 @@ export const Layout = ({ children }) => {
         }
         return () => clearTimeout(timer);
     };
+
+    const handleSecretTrigger = useCallback(() => {
+        if (pathname === '/vault') return;
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setIsTransitioning(false);
+            navigate('/vault');
+        }, 2000); // 2s transition as requested
+    }, [pathname, navigate]);
 
     // Desktop Trigger: Konami (Up Up Down Down) + Exit Intent
     useEffect(() => {
@@ -61,17 +72,9 @@ export const Layout = ({ children }) => {
             window.removeEventListener('keydown', handleKeydown);
             window.removeEventListener('mouseout', handleMouseOut);
         };
-    }, [pathname]);
+    }, [handleSecretTrigger, pathname]);
 
-    const handleSecretTrigger = () => {
-        if (pathname === '/vault') return;
-        setIsTransitioning(true);
-        setTimeout(() => {
-            setIsTransitioning(false);
-            navigate('/vault');
-        }, 2000); // 2s transition as requested
-    };
-
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -90,33 +93,34 @@ export const Layout = ({ children }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center text-secondary font-mono p-6 border-[16px] border-white"
-                        style={{ backgroundColor: 'oklch(0.8652 0.1768 90.4)' }}
+                        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center font-mono p-6"
+                        style={{ backgroundColor: '#000', borderWidth: '16px', borderStyle: 'solid', borderColor: yellowAccent }}
                     >
-                        <div className="absolute top-4 left-4 text-[10px] uppercase font-black tracking-widest bg-white text-secondary px-2">system_breach</div>
-                        <div className="absolute bottom-4 right-4 text-[10px] uppercase font-black tracking-widest bg-white text-secondary px-2">v2.0.26</div>
+                        <div className="absolute top-4 left-4 text-[10px] uppercase font-black tracking-widest px-2" style={{ backgroundColor: yellowAccent, color: 'black' }}>system_breach</div>
+                        <div className="absolute bottom-4 right-4 text-[10px] uppercase font-black tracking-widest px-2" style={{ backgroundColor: yellowAccent, color: 'black' }}>v2.0.26</div>
 
                         <motion.div
                             animate={{ scale: [1, 1.05, 1] }}
                             transition={{ duration: 0.5, repeat: Infinity }}
-                            className="text-4xl md:text-7xl font-black italic mb-2 text-center uppercase tracking-tighter"
+                            className="text-4xl md:text-7xl font-black italic mb-2 text-center uppercase tracking-tighter text-white"
                         >
                             oops_found_it
                         </motion.div>
-                        <p className="text-[10px] md:text-xs font-bold opacity-80 mb-8 text-center uppercase tracking-[0.3em]">
-                            // redirecting to unauthorized_environment...
-                        </p>
+                                        <p className="text-[10px] md:text-xs font-bold opacity-80 mb-8 text-center uppercase tracking-[0.3em] text-white/80">
+                                            {'// redirecting to unauthorized_environment...'}
+                                        </p>
 
-                        <div className="w-64 md:w-80 h-8 border-4 border-white p-1 relative overflow-hidden bg-white/20">
+                        <div className="w-64 md:w-80 h-8 border-2 p-1 relative overflow-hidden" style={{ borderColor: yellowAccent, backgroundColor: '#111' }}>
                             <motion.div
                                 initial={{ x: '-100%' }}
                                 animate={{ x: '0%' }}
                                 transition={{ duration: 1.8, ease: "linear" }}
-                                className="absolute inset-y-1 left-1 right-1 bg-white"
+                                className="absolute inset-y-1 left-1 right-1"
+                                style={{ backgroundColor: yellowAccent }}
                             />
                         </div>
-                        <p className="mt-4 text-[8px] md:text-[10px] font-black opacity-40 uppercase tracking-widest">
-                            probably wasn't supposed to click that...
+                        <p className="mt-4 text-[8px] md:text-[10px] font-black opacity-40 uppercase tracking-widest text-white/70">
+                            probably wasn&apos;t supposed to click that...
                         </p>
                     </motion.div>
                 )}
@@ -150,4 +154,8 @@ export const Layout = ({ children }) => {
             </aside>
         </div>
     );
+};
+
+Layout.propTypes = {
+    children: PropTypes.node,
 };

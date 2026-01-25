@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+// React runtime automatic; no imports needed here
 
 /**
  * Footer Component

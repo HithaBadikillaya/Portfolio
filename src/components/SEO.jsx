@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export const SEO = ({ title, description, ogImage, twitterHandle }) => {
     const fullTitle = `${title} | Hitha Portfolio
@@ -20,4 +20,11 @@ export const SEO = ({ title, description, ogImage, twitterHandle }) => {
             {twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
         </>
     );
+};
+
+SEO.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    ogImage: PropTypes.string,
+    twitterHandle: PropTypes.string,
 };

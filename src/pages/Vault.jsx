@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { SEO } from '../components/SEO';
+import { useState } from 'react';
+// SEO inlined per production readiness review
 import VaultHeader from '../components/Vault/VaultHeader';
 import StatusCard from '../components/Vault/StatusCard';
 import DebugAccordion from '../components/Vault/DebugAccordion';
@@ -20,7 +20,16 @@ const Vault = () => {
 
     return (
         <div className="min-h-screen bg-black text-white font-mono selection:bg-yellow-500 selection:text-black pb-20 overflow-x-hidden">
-            <SEO title="secret_corner" description="the fun corner of the internet" />
+            <>
+                <title>secret_corner | Hitha Portfolio</title>
+                <meta name="description" content="the fun corner of the internet" />
+                <meta property="og:title" content="secret_corner | Hitha Portfolio" />
+                <meta property="og:description" content="the fun corner of the internet" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="secret_corner | Hitha Portfolio" />
+                <meta name="twitter:description" content="the fun corner of the internet" />
+            </>
 
             {/* Popup Logic */}
             <div className="flex justify-end p-6 md:p-12">
@@ -50,7 +59,7 @@ const Vault = () => {
                 <VaultHeader yellowAccent={yellowAccent} />
 
                 <p className="text-center text-yellow-400 font-bold text-lg">
-                    Previous pages were me in a suit; this is me in my pajamas yelling into the void. proceed at your own risk.
+                   The hints were painfully obvious, so you either followed them properly or just got lucky by aggressively clicking. Either way — good job!.
                 </p>
 
                 {/* System Warning */}

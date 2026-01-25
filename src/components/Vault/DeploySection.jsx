@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button } from 'pixel-retroui';
+import PropTypes from 'prop-types';
 
 const DeploySection = ({ yellowAccent }) => {
     return (
@@ -21,16 +21,20 @@ const DeploySection = ({ yellowAccent }) => {
                     style={{ borderColor: yellowAccent }}
                 >
                     <div className="mb-2 opacity-80 uppercase tracking-widest text-[9px] border-b border-white/10 pb-1 text-yellow-400">error_code: 403</div>
-                    <span className="text-white">ACCESS_DENIED: anxiety.levels exceeding safe limits. try again after therapy session.</span>
+                    <span className="text-white">ACCESS_DENIED: still haunted by that incident (May 15, 2024). Retry when ready.</span>
                 </div>
             </div>
 
             <footer className="w-full mt-24 pt-12 opacity-90 text-[10px] flex flex-col md:flex-row justify-between gap-6 uppercase font-black text-center md:text-left tracking-widest text-white">
                 <span>managed_chaos_mode_v2.1</span>
-                <span style={{ backgroundColor: yellowAccent, padding: '0 6px', color: 'black' }}>yellow_vibes_active</span>
+                <span style={{ backgroundColor: yellowAccent, padding: '0 6px', color: 'black' }}>imagine_i_said_something_cool</span>
             </footer>
         </div>
     );
 };
 
 export default DeploySection;
+
+DeploySection.propTypes = {
+    yellowAccent: PropTypes.string.isRequired,
+};

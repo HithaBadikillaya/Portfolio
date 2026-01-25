@@ -1,6 +1,5 @@
 import{ useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { SEO } from '../components/SEO';
 
 const Home = () => {
     const [uptime, setUptime] = useState(0);
@@ -19,10 +18,16 @@ const Home = () => {
 
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center bg-paper text-primary">
-            <SEO
-                title="Index"
-                description="Hitha Badikillaya - Full Stack Engineering."
-            />
+            <>
+                <title>Index | Hitha Portfolio</title>
+                <meta name="description" content="Hitha Badikillaya - Software Dev." />
+                <meta property="og:title" content="Index | Hitha Portfolio" />
+                <meta property="og:description" content="Hitha Badikillaya - Software Dev." />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Index | Hitha Portfolio" />
+                <meta name="twitter:description" content="Hitha Badikillaya - Full Stack Engineering." />
+            </>
 
             {/* Header: Title */}
             <header className="mb-12">
@@ -42,26 +47,24 @@ const Home = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
-                {/* Left: 2-Column Text (About Context) */}
+                
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="prose prose-sm md:prose-base text-primary font-sans leading-relaxed md:columns-2 gap-8 space-y-4 md:space-y-0 text-justify"
+                    className="prose prose-sm md:prose-base text-primary font-sans leading-relaxed space-y-6"
                 >
-                    <p>
-                        I am a multidisciplinary builder focused on creating digital interfaces that resonate.
-                        My work oscillates between the precision of engineering and the fluidity of experience design.
-                        With a background in computer science, I believe the most powerful products are those that
-                        balance technical excellence with emotional impact.
-                    </p>
-                    <p>
-                        I specialize in building scalable web applications using the modern javascript ecosystem.
-                        Beyond code, I am deeply involved in fostering technical communities and contributing to open source.
-                        Currently based in India, working remotely with teams across the globe.
-                    </p>
+                    <div>
+                        <p>
+                            Hey there! glad you ended up here, while you are here, might as well get to know me. I majorly deal with web apps, AI experiments, and small projects that catch my curiosity. I focus on building interfaces that work smoothly and feel right to use, without making anyone pull their hair out. If you&apos;re paying attention, there&apos;s a secret vault on the site for the curious.
+                        </p><br/>
+                        <p>
+                            Im also active in open-source and developer communities - contributing code, improving docs, and learning together. If you&apos;d like to connect, my contact links are below or use the contact page to send me an email. Enjoy exploring the site.
+                        </p>
+                    </div>
+
                     <p className="font-mono text-xs text-secondary mt-4">
-                        &gt; "There's no place like 127.0.0.1"
+                        &gt; ps the code for the vault is hidden in plain sight. good luck and let me know if you find it!
                     </p>
                 </motion.div>
 
@@ -89,11 +92,12 @@ const Home = () => {
                                 <p className="text-secondary">$ current_stack --verify</p>
                                 <div className="grid grid-cols-2 gap-x-8 gap-y-1 pl-4 text-primary">
                                     <span className="text-primary">React.js</span>
-                                    <span className="text-green-400">v19.0.0</span>
+                                    <span className="text-green-400">does not break (usually)</span>
                                     <span className="text-primary">Next.js</span>
-                                    <span className="text-green-400">Stable</span>
+                                    <span className="text-green-400">like butter on toast</span>
                                     <span className="text-primary">Node.js</span>
-                                    <span className="text-green-400">LTS</span>
+                                    <span className="text-green-400">does its thing… somehow</span>
+
                                 </div>
                             </div>
 
@@ -101,12 +105,12 @@ const Home = () => {
                                 <p className="text-secondary">$ check_uptime</p>
                                 <p className="pl-4 text-primary">
                                     &gt; Session: <span className="text-green-400">{formatUptime(uptime)}</span><br />
-                                    &gt; Coffee_Level: <span className="text-yellow-500">404 Not Found</span>
+                                    &gt; Sanity: <span className="text-yellow-500">404 Not Found</span>
                                 </p>
                             </div>
 
                             <div className="pt-4 border-t border-white/10">
-                                <p className="animate-pulse text-secondary">_ awaiting_input</p>
+                                <p className="animate-pulse text-secondary">_vault = try tapping a few keys in the right order.... </p>
                             </div>
                         </div>
                     </div>

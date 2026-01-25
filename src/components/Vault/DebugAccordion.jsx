@@ -1,5 +1,5 @@
-import React from 'react';
 import { Card } from 'pixel-retroui';
+import PropTypes from 'prop-types';
 
 const DebugAccordion = ({ yellowAccent }) => {
     return (
@@ -7,7 +7,7 @@ const DebugAccordion = ({ yellowAccent }) => {
             <p className="font-black lowercase italic tracking-widest text-xs md:text-sm text-white/60">debug_log.ERR</p>
             <Card shadowColor={yellowAccent} bg="#000" className="p-6 md:p-8 font-mono text-[10px] md:text-xs h-full border-2 text-white" style={{ borderColor: yellowAccent }}>
                 <div className="space-y-3">
-                    <p className="opacity-80 font-bold"># ReferenceError: confidence not found</p>
+                    <p className="opacity-80 font-bold"># ReferenceError: sleep not found</p>
                     <p className="pl-4 border-l-2 border-white/10">at 3am_coding_session (brain/focus.js:404)</p>
                     <p className="pl-4 border-l-2 border-white/10">at deadline_panic.catch()</p>
                     <p className="pl-4 border-l-2 border-white/10">at google_every_syntax_error.loop()</p>
@@ -23,3 +23,7 @@ const DebugAccordion = ({ yellowAccent }) => {
 };
 
 export default DebugAccordion;
+
+DebugAccordion.propTypes = {
+    yellowAccent: PropTypes.string.isRequired,
+};
