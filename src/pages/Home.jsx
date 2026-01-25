@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/SEO';
 
 const Home = () => {
+    const [uptime, setUptime] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => setUptime(u => u + 1), 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const formatUptime = (seconds) => {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        return `${h}h ${m}m ${s}s`;
+    };
+
     return (
-        <div className="min-h-screen py-24 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center">
+        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center">
             <SEO
                 title="Index"
                 description="Hitha Badikillaya - Full Stack Engineering."
@@ -26,7 +40,7 @@ const Home = () => {
                 </motion.div>
             </header>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
                 {/* Left: 2-Column Text (About Context) */}
                 <motion.div
@@ -38,13 +52,16 @@ const Home = () => {
                     <p>
                         I am a multidisciplinary builder focused on creating digital interfaces that resonate.
                         My work oscillates between the precision of engineering and the fluidity of experience design.
-                        With a background in Computer Science, I believe the most powerful products are those that
+                        With a background in computer science, I believe the most powerful products are those that
                         balance technical excellence with emotional impact.
                     </p>
                     <p>
-                        I specialize in building scalable web applications using the modern JavaScript ecosystem.
-                        Beyond code, I am deeply involved in fostering technical communities and open-source contributions.
+                        I specialize in building scalable web applications using the modern javascript ecosystem.
+                        Beyond code, I am deeply involved in fostering technical communities and contributing to open source.
                         Currently based in India, working remotely with teams across the globe.
+                    </p>
+                    <p className="font-mono text-xs text-secondary mt-4">
+                        &gt; "There's no place like 127.0.0.1"
                     </p>
                 </motion.div>
 
@@ -81,10 +98,10 @@ const Home = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <p className="text-secondary">$ check_availability</p>
+                                <p className="text-secondary">$ check_uptime</p>
                                 <p className="pl-4 text-primary/80">
-                                    &gt; Status: <span className="text-green-400">Open for work</span><br />
-                                    &gt; Timezone: <span className="text-secondary">IST (UTC+5:30)</span>
+                                    &gt; Session: <span className="text-green-400">{formatUptime(uptime)}</span><br />
+                                    &gt; Coffee_Level: <span className="text-yellow-500">404 Not Found</span>
                                 </p>
                             </div>
 

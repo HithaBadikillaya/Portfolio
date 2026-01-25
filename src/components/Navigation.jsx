@@ -23,8 +23,7 @@ export const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     className={({ isActive }) =>
-                        `group relative flex items-center gap-4 text-xs font-medium uppercase tracking-[0.3em] transition-all duration-300 ${isActive ? 'text-secondary' : 'text-primary/40 hover:text-primary'
-                        }`
+                        `group relative flex items-center gap-4 text-xs font-medium uppercase tracking-[0.3em] transition-all duration-300 ${isActive ? 'text-secondary' : 'text-primary/60 hover:text-primary'}`
                     }
                 >
                     <motion.span
@@ -48,7 +47,7 @@ export const MobileNav = () => {
         <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 lg:hidden bg-paper/80 backdrop-blur-md border border-secondary/20 px-6 py-4 rounded-full z-50 flex gap-6">
             <NavLink to="/" className={({ isActive }) => `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`}>Inx.</NavLink>
             <NavLink to="/projects" className={({ isActive }) => `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`}>Wrk.</NavLink>
-            <NavLink to="/about" className={({ isActive }) => `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`}>Abt.</NavLink>
+            <NavLink to="/experience" className={({ isActive }) => `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`}>Exp.</NavLink>
             <NavLink to="/contact" className={({ isActive }) => `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`}>Con.</NavLink>
         </nav>
     )

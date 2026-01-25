@@ -18,7 +18,7 @@ const Vault = () => {
     const yellowAccent = "oklch(0.8652 0.1768 90.4)";
 
     return (
-        <div className="min-h-screen bg-paper text-primary font-mono selection:bg-secondary selection:text-paper pb-20 overflow-x-hidden">
+        <div className="min-h-screen bg-black text-white font-mono selection:bg-secondary selection:text-paper pb-20 overflow-x-hidden">
             <SEO title="secret_corner" description="the fun corner of the internet" />
 
             {/* Popup Logic */}

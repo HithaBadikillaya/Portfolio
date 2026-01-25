@@ -28,10 +28,10 @@ const experiences = [
 
 const Experience = () => {
     return (
-        <div className="min-h-screen py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
             <SEO title="Experience" description="Career history." />
 
-            <div className="mb-16">
+            <div className="mb-12">
                 <span className="text-secondary font-mono text-xs tracking-widest block mb-4">
                     git log --oneline
                 </span>
@@ -64,20 +64,50 @@ const Experience = () => {
                         </div>
                     </motion.div>
                 ))}
+
+                {/* Start Node */}
+                <div className="relative pl-8 md:pl-12 opacity-50">
+                    <div className="absolute -left-[4px] top-2 w-2 h-2 rounded-full bg-white/20" />
+                    <p className="font-mono text-xs text-primary/40">initial commit (Hello World)</p>
+                </div>
             </div>
 
-            <div className="mt-24 pt-12 border-t border-white/10">
-                <h3 className="text-xl font-mono text-secondary mb-8">&gt; education --list</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-mono text-sm">
-                    <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
-                        <span className="text-green-500 block mb-2">Success</span>
-                        <h4 className="font-bold text-primary mb-1">B.E. Computer Science</h4>
-                        <p className="text-primary/50">Sahyadri College of Engineering</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-white/10">
+                {/* Education */}
+                <div>
+                    <h3 className="text-xl font-mono text-secondary mb-8">&gt; education --list</h3>
+                    <div className="space-y-4 font-mono text-sm">
+                        <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
+                            <span className="text-green-500 block mb-2 text-xs">status: success</span>
+                            <h4 className="font-bold text-primary mb-1">B.E. Computer Science</h4>
+                            <p className="text-primary/50 text-xs">Sahyadri College of Engineering</p>
+                        </div>
+                        <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
+                            <span className="text-green-500 block mb-2 text-xs">status: success</span>
+                            <h4 className="font-bold text-primary mb-1">Diploma in CS</h4>
+                            <p className="text-primary/50 text-xs">Vivekananda Polytechnic</p>
+                        </div>
                     </div>
-                    <div className="p-6 border border-white/5 bg-white/5 rounded-sm">
-                        <span className="text-green-500 block mb-2">Success</span>
-                        <h4 className="font-bold text-primary mb-1">Diploma in CS & Engineering</h4>
-                        <p className="text-primary/50">Vivekananda Polytechnic</p>
+                </div>
+
+                {/* Skills / Packages */}
+                <div>
+                    <h3 className="text-xl font-mono text-secondary mb-8">&gt; npm list --depth=0</h3>
+                    <div className="p-6 border border-white/5 bg-white/5 rounded-sm font-mono text-xs md:text-sm space-y-2 text-primary/80">
+                        <p>├── <span className="text-secondary">frontend@latest</span></p>
+                        <p>│   ├── React.js</p>
+                        <p>│   ├── Next.js</p>
+                        <p>│   └── Tailwind</p>
+                        <p>├── <span className="text-secondary">backend@stable</span></p>
+                        <p>│   ├── Node.js</p>
+                        <p>│   ├── MongoDB</p>
+                        <p>│   └── PostgreSQL</p>
+                        <p>└── <span className="text-secondary">tools@dev</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;├── Git</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;└── Docker</p>
+                        <div className="pt-4 text-xs text-primary/40 italic">
+                            found 0 vulnerabilities (hopefully)
+                        </div>
                     </div>
                 </div>
             </div>

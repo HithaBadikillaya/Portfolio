@@ -1,25 +1,96 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { send } from '@emailjs/browser';
 import { SEO } from '../components/SEO';
 
 const Contact = () => {
     const [submitted, setSubmitted] = useState(false);
+    const [latency, setLatency] = useState(24);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [isSending, setIsSending] = useState(false);
+    const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLatency(Math.floor(Math.random() * (40 - 10 + 1) + 10));
+        }, 2000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 5000);
+
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        // If EmailJS is configured, use it. Otherwise fall back to mailto.
+        if (serviceId && templateId && publicKey) {
+            setIsSending(true);
+            try {
+                // send template params matching your template: from_name, message, from_email, user_email
+                await send(serviceId, templateId, {
+                    from_name: name,
+                    message: message,
+                    from_email: email,
+                    user_email: email,
+                }, publicKey);
+
+                setIsSending(false);
+                setSubmitted(true);
+                setName(''); setEmail(''); setMessage('');
+                setToast({ show: true, message: 'Mail sent — thanks!', type: 'success' });
+                setTimeout(() => setToast((t) => ({ ...t, show: false })), 4000);
+                setTimeout(() => setSubmitted(false), 5000);
+            } catch (err) {
+                setIsSending(false);
+                console.error('EmailJS send failed', err);
+                setToast({ show: true, message: 'Failed to send via EmailJS. Check EmailJS dashboard.', type: 'error' });
+                setTimeout(() => setToast((t) => ({ ...t, show: false })), 6000);
+            }
+
+            return;
+        }
+
+        // If EmailJS not configured, fallback to mail client
+        const subject = encodeURIComponent(`Contact from ${name || 'Website Visitor'}`);
+        const body = encodeURIComponent(`${message}\n\nFrom: ${name || ''} <${email || ''}>`);
+        window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
     };
 
     return (
-        <div className="min-h-screen py-24 px-6 md:px-12 max-w-5xl mx-auto flex flex-col justify-center">
+        <div className="min-h-screen py-16 px-6 md:px-12 max-w-5xl mx-auto flex flex-col justify-center">
             <SEO title="Contact" description="Initialize connection." />
 
-            <div className="mb-12">
-                <span className="text-secondary font-mono text-xs tracking-widest block mb-4">
-                    ssh user@hitha.dev
-                </span>
-                <h2 className="text-4xl md:text-6xl font-serif text-primary">Initialize Connection</h2>
+            {/* Toast notification (styled to match theme) */}
+            <div aria-live="polite">
+                {toast.show && (
+                    <div className="fixed top-6 right-6 z-50 w-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            className={`px-4 py-3 rounded-md shadow-lg max-w-xs ${toast.type === 'success' ? 'bg-secondary text-paper' : 'bg-red-600 text-paper'}`}
+                        >
+                            <div className="text-sm font-medium">{toast.message}</div>
+                        </motion.div>
+                    </div>
+                )}
+            </div>
+
+            <div className="mb-12 flex justify-between items-end">
+                <div>
+                    <span className="text-secondary font-mono text-xs tracking-widest block mb-4">
+                        ssh user@hitha.dev
+                    </span>
+                    <h2 className="text-4xl md:text-6xl font-serif text-primary">Initialize Connection</h2>
+                </div>
+                <div className="hidden md:flex items-center gap-2 font-mono text-xs text-secondary/60">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>PING: {latency}ms</span>
+                </div>
             </div>
 
             <div className="w-full bg-black border border-white/20 rounded-md shadow-2xl overflow-hidden font-mono">
@@ -49,6 +120,8 @@ const Contact = () => {
                                         <span className="text-green-500">&gt;</span>
                                         <input
                                             required
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
                                             placeholder="John Doe"
                                         />
@@ -62,6 +135,8 @@ const Contact = () => {
                                         <input
                                             type="email"
                                             required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
                                             placeholder="john@example.com"
                                         />
@@ -75,6 +150,8 @@ const Contact = () => {
                                         <textarea
                                             required
                                             rows={4}
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20 resize-none"
                                             placeholder="Write your message here..."
                                         />
@@ -84,9 +161,11 @@ const Contact = () => {
                                 <div className="pt-6">
                                     <button
                                         type="submit"
-                                        className="text-primary hover:text-black bg-white/5 hover:bg-secondary border border-secondary/50 px-6 py-2 transition-all text-xs uppercase tracking-widest"
+                                        disabled={isSending}
+                                        aria-busy={isSending}
+                                        className={`text-primary ${isSending ? 'opacity-50 cursor-not-allowed' : 'hover:text-black'} bg-white/5 ${isSending ? '' : 'hover:bg-secondary'} border border-secondary/50 px-6 py-2 transition-all text-xs uppercase tracking-widest`}
                                     >
-                                        Execute_Send
+                                        {isSending ? 'Sending…' : 'Execute_Send'}
                                     </button>
                                 </div>
                             </motion.form>
@@ -113,8 +192,8 @@ const Contact = () => {
             </div>
 
             <div className="mt-12 text-center text-primary/30 font-mono text-xs">
-                <p>Designed for secure communication channels.</p>
-                <p>hithabadikillaya@gmail.com</p>
+                <p>Designed for secure communication channels (HTTPS protected).</p>
+                <p>hithabadikillaya@gmail.com // Ping me, I&apos;ll Ack.</p>
             </div>
         </div>
     );
