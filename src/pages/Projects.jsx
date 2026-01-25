@@ -4,19 +4,19 @@ import { useEffect, useState } from 'react';
 const projects = [
     {
         id: 1,
-        title: 'MeanIt',
-        link: 'https://github.com/HithaBadikillaya/MeanIt_chrome-ext',
-        category: 'browser tool',
-        year: '2025',
-        tech: ['JavaScript', 'HTML', 'CSS'],
-        description: 'A Chrome extension that lets you select any word on a webpage and instantly see its meaning, right in your browser.'
+        title: 'Covelet',
+        link: 'https://github.com/HithaBadikillaya/covelet',
+        category: 'open source',
+        year: 'ongoing',
+        tech: ['React Native', 'Expo', 'Firebase'],
+        description: 'An open-source, group-first space for preserving shared memories as time capsules that are calm, private, and built to feel safe and reliable.'
     },
     {
         id: 2,
         title: 'CommandBrainCLI',
         link: 'https://github.com/HithaBadikillaya/CommandBrain-CLI',
         category: 'cli-tool',
-        year: '2025',
+        year: 'completed',
         tech: ['JS', 'Python', 'VMs'],
         description: 'Think of it as a “CommandBrain”: type commands, see their categories visualized as a brain, and explore system commands across OSes.'
     },
