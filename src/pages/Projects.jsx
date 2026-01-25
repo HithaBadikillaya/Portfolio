@@ -2,28 +2,31 @@ import { motion } from 'framer-motion';
 
 const projects = [
     {
-        id: 1,
-        title: 'Belle Allure',
-        category: 'e-commerce',
-        year: '2025',
-        tech: ['Recoil', 'React', 'Node'],
-        description: 'High-performance e-commerce engine with real-time inventory.'
+    id: 1,
+    title: 'MeanIt',
+    link: 'https://github.com/HithaBadikillaya/MeanIt_chrome-ext',
+    category: 'browser tool',
+    year: '2025',
+    tech: ['JavaScript', 'HTML', 'CSS'],
+    description: 'A Chrome extension that lets you select any word on a webpage and instantly see its meaning, right in your browser.'
     },
     {
         id: 2,
         title: 'CommandBrainCLI',
+        link: 'https://github.com/HithaBadikillaya/CommandBrain-CLI',
         category: 'cli-tool',
         year: '2025',
-        tech: ['Rust', 'Clap', 'Tokio'],
-        description: 'Terminal-based productivity suite for developers.'
+        tech: ['JS', 'Python', 'VMs'],
+        description: 'Think of it as a “CommandBrain”: type commands, see their categories visualized as a brain, and explore system commands across OSes.'
     },
     {
         id: 3,
         title: 'D.A.S.H',
+        link: 'https://github.com/HithaBadikillaya/D.A.S.H',
         category: 'docs',
         year: 'ongoing',
-        tech: ['Next.js', 'MDX', 'Tailwind'],
-        description: 'Developer Analysis & System Hub - Technical documentation platform.'
+        tech: ['Next.js', 'Typescript', 'Tailwind'],
+        description: 'A privacy‑first docs wizard: upload audio/video, and D.A.S.H spits out meeting notes, captions, and letters without storing your data anywhere else'
     },
 ];
 
@@ -35,8 +38,6 @@ const commitLog = [
 ];
 
 const Projects = () => {
-
-    const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
@@ -92,7 +93,7 @@ const Projects = () => {
                     {projects.map((project, idx) => (
                         <a
                             key={project.id}
-                            href={`https://github.com/HithaBadikillaya/${slugify(project.title)}`}
+                            href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group col-span-12"
@@ -112,7 +113,7 @@ const Projects = () => {
                             </div>
 
                             {/* Description */}
-                            <div className="col-span-6 md:col-span-4 text-primary/60 text-xs md:text-sm truncate">
+                            <div className="col-span-12 md:col-span-4 text-primary/60 text-xs md:text-sm break-words whitespace-normal">
                                 {project.description}
                             </div>
 
@@ -218,7 +219,7 @@ const Projects = () => {
                 <h3 className="text-xl font-serif text-primary mb-4">Want more chaos?</h3>
                 <p className="text-primary/60 mb-6">If you liked poking things, I break even more projects on my GitHub.</p>
                 <a href={`https://github.com/HithaBadikillaya`} target="_blank" rel="noopener noreferrer" className="inline-block text-xs uppercase tracking-widest font-bold text-secondary hover:text-primary border border-secondary/30 px-6 py-3 transition-colors">
-                    Visit my GitHub — it&apos;s a museum of workarounds
+                    Visit my GitHub
                 </a>
             </div>
         </div>

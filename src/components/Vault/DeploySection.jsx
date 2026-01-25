@@ -9,12 +9,18 @@ const DeploySection = ({ yellowAccent }) => {
                     bg="#111"
                     shadow="rgba(0,0,0,0.6)"
                     disabled
-                    className="px-12 md:px-20 py-8 md:py-10 font-black uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/50 text-xs md:text-base opacity-80 cursor-not-allowed transition-colors border-2"
+                    className="px-12 md:px-20 py-6 md:py-8 font-black uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/60 text-xs md:text-base opacity-90 cursor-not-allowed transition-colors rounded-md flex items-center justify-center"
                     borderSize={2}
                     borderColor={yellowAccent}
-                    style={{ borderColor: yellowAccent }}
+                    style={{
+                        border: `2px solid ${yellowAccent}`,
+                        borderRadius: 8,
+                        paddingTop: 18,
+                        paddingBottom: 18,
+                        backgroundColor: '#111'
+                    }}
                 >
-                    DEPLOY_TO_PROD
+                    <span className="pointer-events-none">DEPLOY_TO_PROD</span>
                 </Button>
                 <div
                     className="absolute top-full mt-6 left-1/2 -translate-x-1/2 w-72 text-center text-[10px] p-6 opacity-0 group-hover:opacity-100 transition-all font-black border-2 border-yellow-500 shadow-xl bg-black"

@@ -32,7 +32,7 @@ export const Footer = () => {
       <div className="mt-8 md:mt-12 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-paper/10 pt-10 text-[10px] uppercase tracking-widest opacity-40 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start gap-2">
           <p>© 2026 Hitha Badikillaya</p>
-          <p className="opacity-40 hover:opacity-100 transition-opacity cursor-help hidden md:block">Sequence: ↑ ↑ ↓ ↓</p>
+          <p className="opacity-80 hover:opacity-100 transition-opacity cursor-help">Sequence: ↑ ↑ ↓ ↓</p>
         </div>
         <div className="flex gap-4 md:gap-8">
           <span>Privacy</span>
