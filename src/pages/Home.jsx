@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/SEO';
 
@@ -18,7 +18,7 @@ const Home = () => {
     };
 
     return (
-        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center">
+        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center bg-paper text-primary">
             <SEO
                 title="Index"
                 description="Hitha Badikillaya - Full Stack Engineering."
@@ -47,7 +47,7 @@ const Home = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="prose prose-sm md:prose-base text-primary/80 font-sans leading-relaxed md:columns-2 gap-8 space-y-4 md:space-y-0 text-justify"
+                    className="prose prose-sm md:prose-base text-primary font-sans leading-relaxed md:columns-2 gap-8 space-y-4 md:space-y-0 text-justify"
                 >
                     <p>
                         I am a multidisciplinary builder focused on creating digital interfaces that resonate.
@@ -87,19 +87,19 @@ const Home = () => {
                         <div className="p-6 font-mono text-xs md:text-sm space-y-6">
                             <div className="space-y-2">
                                 <p className="text-secondary">$ current_stack --verify</p>
-                                <div className="grid grid-cols-2 gap-x-8 gap-y-1 pl-4 text-primary/80">
-                                    <span className="text-primary/60">React.js</span>
+                                <div className="grid grid-cols-2 gap-x-8 gap-y-1 pl-4 text-primary">
+                                    <span className="text-primary">React.js</span>
                                     <span className="text-green-400">v19.0.0</span>
-                                    <span className="text-primary/60">Next.js</span>
+                                    <span className="text-primary">Next.js</span>
                                     <span className="text-green-400">Stable</span>
-                                    <span className="text-primary/60">Node.js</span>
+                                    <span className="text-primary">Node.js</span>
                                     <span className="text-green-400">LTS</span>
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <p className="text-secondary">$ check_uptime</p>
-                                <p className="pl-4 text-primary/80">
+                                <p className="pl-4 text-primary">
                                     &gt; Session: <span className="text-green-400">{formatUptime(uptime)}</span><br />
                                     &gt; Coffee_Level: <span className="text-yellow-500">404 Not Found</span>
                                 </p>

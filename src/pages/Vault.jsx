@@ -7,6 +7,7 @@ import NeedsCard from '../components/Vault/NeedsCard';
 import StatsGrid from '../components/Vault/StatsGrid';
 import ChangelogSection from '../components/Vault/ChangelogSection';
 import DeploySection from '../components/Vault/DeploySection';
+import ProcessRant from '../components/Vault/ProcessRant';
 import { Button, Popup } from 'pixel-retroui';
 
 const Vault = () => {
@@ -15,10 +16,10 @@ const Vault = () => {
     const closePopup = () => setIsPopupOpen(false);
 
     // Accent color constant
-    const yellowAccent = "oklch(0.8652 0.1768 90.4)";
+    const yellowAccent = "#FFD700";
 
     return (
-        <div className="min-h-screen bg-black text-white font-mono selection:bg-secondary selection:text-paper pb-20 overflow-x-hidden">
+        <div className="min-h-screen bg-black text-white font-mono selection:bg-yellow-500 selection:text-black pb-20 overflow-x-hidden">
             <SEO title="secret_corner" description="the fun corner of the internet" />
 
             {/* Popup Logic */}
@@ -27,7 +28,7 @@ const Vault = () => {
                     onClick={openPopup}
                     bg={yellowAccent}
                     shadow="black"
-                    className="text-[10px] md:text-xs font-black uppercase text-primary"
+                    className="text-[10px] md:text-xs font-black uppercase text-white"
                 >
                     vault_access_info
                 </Button>
@@ -36,7 +37,7 @@ const Vault = () => {
                     onClose={closePopup}
                     title="SYSTEM_MESSAGE"
                 >
-                    <div className="p-4 font-mono text-xs text-primary bg-paper">
+                    <div className="p-4 font-mono text-xs" style={{ color: 'black', backgroundColor: yellowAccent }}>
                         Welcome to the retro vault! Explore the hidden logs.
                         All professional filters have been disabled.
                     </div>
@@ -47,6 +48,10 @@ const Vault = () => {
 
                 {/* Header - Centered as requested */}
                 <VaultHeader yellowAccent={yellowAccent} />
+
+                <p className="text-center text-yellow-400 font-bold text-lg">
+                    Previous pages were me in a suit; this is me in my pajamas yelling into the void. proceed at your own risk.
+                </p>
 
                 {/* System Warning */}
                 <StatusCard yellowAccent={yellowAccent} />
@@ -59,6 +64,9 @@ const Vault = () => {
 
                 {/* Metrics */}
                 <StatsGrid yellowAccent={yellowAccent} />
+
+                {/* Process rant: honest workflow and collaboration */}
+                <ProcessRant yellowAccent={yellowAccent} />
 
                 {/* Changelog & TODO */}
                 <ChangelogSection yellowAccent={yellowAccent} />
