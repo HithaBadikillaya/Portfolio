@@ -3,8 +3,8 @@ import { motion, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
     const [isHovering, setIsHovering] = useState(false);
-    const mouseX = useSpring(0, { stiffness: 500, damping: 28 });
-    const mouseY = useSpring(0, { stiffness: 500, damping: 28 });
+    const mouseX = useSpring(0, { stiffness: 1000, damping: 48 });
+    const mouseY = useSpring(0, { stiffness: 1000, damping: 48 });
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -43,12 +43,12 @@ export const CustomCursor = () => {
                 translateX: '-50%',
                 translateY: '-50%',
             }}
-            className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] rounded-full border border-secondary mix-blend-difference flex items-center justify-center"
+            className="fixed top-0 left-0 w-6 h-6 pointer-events-none z-[9999] rounded-full border border-secondary mix-blend-difference flex items-center justify-center"
             animate={{
-                scale: isHovering ? 2.5 : 1,
+                scale: isHovering ? 1.6 : 1,
                 backgroundColor: isHovering ? 'var(--color-secondary)' : 'transparent',
             }}
-            transition={{ type: 'spring', stiffness: 250, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 900, damping: 45, mass: 0.5 }}
         >
             <div className="w-1 h-1 bg-secondary rounded-full" />
         </motion.div>

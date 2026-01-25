@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const projects = [
     {
-    id: 1,
-    title: 'MeanIt',
-    link: 'https://github.com/HithaBadikillaya/MeanIt_chrome-ext',
-    category: 'browser tool',
-    year: '2025',
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    description: 'A Chrome extension that lets you select any word on a webpage and instantly see its meaning, right in your browser.'
+        id: 1,
+        title: 'MeanIt',
+        link: 'https://github.com/HithaBadikillaya/MeanIt_chrome-ext',
+        category: 'browser tool',
+        year: '2025',
+        tech: ['JavaScript', 'HTML', 'CSS'],
+        description: 'A Chrome extension that lets you select any word on a webpage and instantly see its meaning, right in your browser.'
     },
     {
         id: 2,
@@ -26,11 +27,12 @@ const projects = [
         category: 'docs',
         year: 'ongoing',
         tech: ['Next.js', 'Typescript', 'Tailwind'],
-        description: 'A privacy‑first docs wizard: upload audio/video, and D.A.S.H spits out meeting notes, captions, and letters without storing your data anywhere else'
+        description: 'A privacy first docs wizard: upload audio/video, and D.A.S.H spits out meeting notes, captions, and letters without storing your data anywhere else'
     },
 ];
 
-const commitLog = [
+// fallback commits shown while real data loads (or if the fetch fails)
+const fallbackCommits = [
     { hash: 'a1b2c3d', msg: 'fixed typo in README (again)', time: '2h ago' },
     { hash: 'e5f6g7h', msg: 'removed console.log("here")', time: '5h ago' },
     { hash: 'i8j9k0l', msg: 'refactored messy code into smaller messy code', time: '1d ago' },
@@ -38,6 +40,43 @@ const commitLog = [
 ];
 
 const Projects = () => {
+    const [commitLog, setCommitLog] = useState(fallbackCommits);
+
+    useEffect(() => {
+        let mounted = true;
+
+        const timeAgo = (iso) => {
+            const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
+            if (diff < 60) return `${diff}s ago`;
+            if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+            return `${Math.floor(diff / 86400)}d ago`;
+        };
+
+        fetch('https://api.github.com/search/commits?q=author:HithaBadikillaya&sort=committer-date&order=desc')
+            .then((res) => {
+                if (!res.ok) throw new Error('GitHub API error');
+                return res.json();
+            })
+            .then((data) => {
+                if (!mounted || !data || !Array.isArray(data.items)) return;
+
+                const commits = data.items.map((item) => ({
+                    hash: (item.sha || '').slice(0, 7),
+                    msg: `[${item.repository?.name || 'unknown'}] ${item.commit?.message || 'commit'}`,
+                    time: timeAgo(item.commit?.author?.date),
+                }));
+
+                if (commits.length > 0) setCommitLog(commits.slice(0, 8));
+            })
+            .catch(() => {
+                // on error, keep fallback commits
+            });
+
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
     return (
         <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
@@ -104,23 +143,23 @@ const Projects = () => {
                                 transition={{ delay: idx * 0.1 }}
                                 className="grid grid-cols-12 gap-4 p-4 border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
                             >
-                            {/* Name */}
-                            <div className="col-span-12 md:col-span-4 flex items-center gap-3">
-                                <span className="text-secondary opacity-50 text-xs">d--r-</span>
-                                <span className="font-bold text-primary group-hover:text-secondary transition-colors">
-                                    {project.title}
-                                </span>
-                            </div>
+                                {/* Name */}
+                                <div className="col-span-12 md:col-span-4 flex items-center gap-3">
+                                    <span className="text-secondary opacity-50 text-xs">d--r-</span>
+                                    <span className="font-bold text-primary group-hover:text-secondary transition-colors">
+                                        {project.title}
+                                    </span>
+                                </div>
 
-                            {/* Description */}
-                            <div className="col-span-12 md:col-span-4 text-primary/60 text-xs md:text-sm break-words whitespace-normal">
-                                {project.description}
-                            </div>
+                                {/* Description */}
+                                <div className="col-span-12 md:col-span-4 text-primary/60 text-xs md:text-sm break-words whitespace-normal">
+                                    {project.description}
+                                </div>
 
-                            {/* Stack */}
-                            <div className="col-span-3 md:col-span-2 text-xs text-primary/40">
-                                {project.tech.join(', ')}
-                            </div>
+                                {/* Stack */}
+                                <div className="col-span-3 md:col-span-2 text-xs text-primary/40">
+                                    {project.tech.join(', ')}
+                                </div>
 
                                 {/* Year */}
                                 <div className="col-span-3 md:col-span-2 text-right text-primary/40">
@@ -214,7 +253,7 @@ const Projects = () => {
                 </p>
             </div>
 
-            {/* Final Themed GitHub Section */}
+
             <div className="mt-12 border border-white/10 rounded-sm overflow-hidden bg-white/5 p-8 text-center">
                 <h3 className="text-xl font-serif text-primary mb-4">Want more chaos?</h3>
                 <p className="text-primary/60 mb-6">If you liked poking things, I break even more projects on my GitHub.</p>
