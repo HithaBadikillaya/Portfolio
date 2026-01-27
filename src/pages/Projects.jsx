@@ -189,10 +189,13 @@ const Projects = () => {
                     <h3 className="text-xl text-secondary">&gt; recent_activity.log</h3>
                     <div className="border border-white/10 bg-black/40 p-6 rounded-sm space-y-4 text-xs">
                         {commitLog.map((log, i) => (
-                            <div key={i} className="flex gap-4 text-primary/70 border-b border-white/5 last:border-0 pb-2 last:pb-0">
-                                <span className="text-yellow-500 w-16 opacity-70">{log.hash}</span>
-                                <span className="flex-1 truncate">&quot;{log.msg}&quot;</span>
-                                <span className="text-primary/30 text-right">{log.time}</span>
+                            <div key={i} className="flex flex-col md:flex-row gap-2 md:gap-4 text-primary/70 border-b border-white/5 last:border-0 pb-3 md:pb-2 last:pb-0">
+                                <div className="flex justify-between md:contents">
+                                    <span className="text-yellow-500 w-16 opacity-70 font-bold">{log.hash}</span>
+                                    <span className="text-primary/30 text-[10px] md:hidden">{log.time}</span>
+                                </div>
+                                <span className="flex-1 break-words whitespace-normal text-sm md:text-xs">&quot;{log.msg}&quot;</span>
+                                <span className="text-primary/30 text-right hidden md:block">{log.time}</span>
                             </div>
                         ))}
                         <div className="pt-2 text-primary/20 italic text-[10px] text-center">
