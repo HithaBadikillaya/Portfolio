@@ -7,11 +7,10 @@ import StatsGrid from '../components/Vault/StatsGrid';
 import ChangelogSection from '../components/Vault/ChangelogSection';
 import DeploySection from '../components/Vault/DeploySection';
 import ProcessRant from '../components/Vault/ProcessRant';
-import { Button, Popup } from 'pixel-retroui';
+import { Popup } from 'pixel-retroui';
 
 const Vault = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const openPopup = () => setIsPopupOpen(true);
     const closePopup = () => setIsPopupOpen(false);
 
     const yellowAccent = "#FFD700";
@@ -19,7 +18,7 @@ const Vault = () => {
     return (
         <div className="min-h-screen bg-black text-white font-mono selection:bg-yellow-500 selection:text-black pb-20 overflow-x-hidden">
             <>
-                <title>vault | Hitha Portfolio</title>
+                <title>vault | Hitha </title>
                 <meta name="description" content="me being a mess" />
                 <meta property="og:title" content="vault | Hitha Portfolio" />
                 <meta property="og:description" content="me being a mess" />
@@ -30,14 +29,6 @@ const Vault = () => {
             </>
 
             <div className="flex justify-end p-6 md:p-12">
-                <Button
-                    onClick={openPopup}
-                    bg={yellowAccent}
-                    shadow="black"
-                    className="text-[10px] md:text-xs font-black uppercase text-white"
-                >
-                    vault_access_info
-                </Button>
                 <Popup
                     isOpen={isPopupOpen}
                     onClose={closePopup}

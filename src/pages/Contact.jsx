@@ -76,9 +76,9 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen py-16 px-6 md:px-12 max-w-5xl mx-auto flex flex-col justify-center">
+        <div className="min-h-screen py-6 px-6 md:px-12 max-w-5xl mx-auto flex flex-col justify-center">
             <>
-                <title>Contact | Hitha Portfolio</title>
+                <title>Contact | Hitha </title>
                 <meta name="description" content="Initialize connection." />
                 <meta property="og:title" content="Contact | Hitha Portfolio" />
                 <meta property="og:description" content="Initialize connection." />

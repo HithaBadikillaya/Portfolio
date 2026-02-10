@@ -26,9 +26,9 @@ const experiences = [
 
 const Experience = () => {
     return (
-        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="min-h-screen py-6 px-6 md:px-12 max-w-7xl mx-auto">
             <>
-                <title>Experience | Hitha Portfolio</title>
+                <title>Experience | Hitha </title>
                 <meta name="description" content="Career history." />
                 <meta property="og:title" content="Experience | Hitha Portfolio" />
                 <meta property="og:description" content="Career history." />
@@ -54,7 +54,6 @@ const Experience = () => {
                         transition={{ delay: idx * 0.1 }}
                         className="relative pl-8 md:pl-12"
                     >
-                        {/* Timeline Node */}
                         <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-paper border border-secondary" />
 
                         <div className="font-mono space-y-2">
@@ -72,7 +71,6 @@ const Experience = () => {
                     </motion.div>
                 ))}
 
-                {/* Start Node */}
                 <div className="relative pl-8 md:pl-12 opacity-50">
                     <div className="absolute -left-[4px] top-2 w-2 h-2 rounded-full bg-white/20" />
                     <p className="font-mono text-xs text-primary/40">initial commit (Hello World)</p>
@@ -97,7 +95,7 @@ const Experience = () => {
                     </div>
                 </div>
 
-                {/* Skills / Packages */}
+               
                 <div>
                     <h3 className="text-xl font-mono text-secondary mb-8">&gt; npm list --depth=0</h3>
                     <div className="p-6 border border-white/5 bg-white/5 rounded-sm font-mono text-xs md:text-sm space-y-2 text-primary/80">

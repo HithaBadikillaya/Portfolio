@@ -17,9 +17,9 @@ const Home = () => {
     };
 
     return (
-        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center bg-paper text-primary">
+        <div className="min-h-screen py-6 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-center bg-paper text-primary">
             <>
-                <title>Index | Hitha Portfolio</title>
+                <title>Index | Hitha </title>
                 <meta name="description" content="Hitha Badikillaya - Software Dev." />
                 <meta property="og:title" content="Index | Hitha Portfolio" />
                 <meta property="og:description" content="Hitha Badikillaya - Software Dev." />
@@ -56,7 +56,7 @@ const Home = () => {
                 >
                     <div>
                         <p>
-                            Hey there! glad you ended up here, while you are here, might as well get to know me. I majorly deal with web apps, AI experiments, and small projects that catch my curiosity. I focus on building interfaces that work smoothly and feel right to use, without making anyone pull their hair out. If you&apos;re paying attention, there&apos;s a secret vault on the site for the curious.
+                            Hey there! good to see you, while you are here, might as well get to know me. I majorly deal with web apps, AI experiments, and small projects that catch my curiosity. I focus on building interfaces that work smoothly and feel right to use, without making anyone pull their hair out. If you&apos;re paying attention, there&apos;s a secret vault on the site for the curious.
                         </p><br/>
                         <p>
                             Im also active in open-source and developer communities - contributing code, improving docs, and learning together. If you&apos;d like to connect, my contact links are below or use the contact page to send me an email. Enjoy exploring the site.

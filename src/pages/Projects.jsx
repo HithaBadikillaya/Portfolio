@@ -22,12 +22,12 @@ const projects = [
     },
     {
         id: 3,
-        title: 'D.A.S.H',
-        link: 'https://github.com/HithaBadikillaya/D.A.S.H',
-        category: 'docs',
+        title: 'Papertrail',
+        link: 'https://github.com/HithaBadikillaya/Papertrail',
+        category: 'documentation',
         year: 'ongoing',
-        tech: ['Next.js', 'Typescript', 'Tailwind'],
-        description: 'A privacy first docs wizard: upload audio/video, and D.A.S.H spits out meeting notes, captions, and letters without storing your data anywhere else'
+        tech: ['React', 'Node.js', 'HuggingFace'],
+        description: 'A self-hosted app for generating meeting minutes, captions, and letters from audio or video with privacy-first design.',
     },
 ];
 
@@ -79,9 +79,9 @@ const Projects = () => {
     }, []);
 
     return (
-        <div className="min-h-screen py-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="min-h-screen py-6 px-6 md:px-12 max-w-7xl mx-auto">
             <>
-                <title>Projects | Hitha Portfolio</title>
+                <title>Projects | Hitha </title>
                 <meta name="description" content="Directory of works." />
                 <meta property="og:title" content="Projects | Hitha Portfolio" />
                 <meta property="og:description" content="Directory of works." />
