@@ -20,7 +20,6 @@ const StatsGrid = ({ yellowAccent }) => {
                             className="w-full h-full flex flex-col justify-between p-4 cursor-crosshair group hover:-translate-y-1 transition-transform duration-200"
                             bg="#0f1724"
                             borderColor={yellowAccent}
-                            borderSize={2}
                             style={{ backgroundColor: '#0f1724', borderColor: yellowAccent }}
                         >
                             <p

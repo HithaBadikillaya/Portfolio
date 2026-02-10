@@ -10,7 +10,6 @@ const DeploySection = ({ yellowAccent }) => {
                     shadow="rgba(0,0,0,0.6)"
                     disabled
                     className="px-12 md:px-20 py-6 md:py-8 font-black uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/60 text-xs md:text-base opacity-90 cursor-not-allowed transition-colors rounded-md flex items-center justify-center"
-                    borderSize={2}
                     borderColor={yellowAccent}
                     style={{
                         border: `2px solid ${yellowAccent}`,
