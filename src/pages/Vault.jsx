@@ -53,7 +53,7 @@ const Vault = () => {
 
                 <VaultHeader yellowAccent={yellowAccent} />
 
-                <p className="text-center text-yellow-400 font-bold text-lg">
+                <p className="text-center text-yellow-400 font-bold text-base md:text-lg">
                    The hints were painfully obvious, so you either followed them properly or just got lucky by aggressively clicking. Either way — good job!.
                 </p>
 

@@ -23,7 +23,7 @@ const StatsGrid = ({ yellowAccent }) => {
                             style={{ backgroundColor: '#0f1724', borderColor: yellowAccent }}
                         >
                             <p
-                                className="opacity-60 text-[9px] font-black uppercase leading-[1.2] group-hover:opacity-100 transition-opacity text-white/80"
+                                className="opacity-60 text-[8px] md:text-[9px] font-black uppercase leading-[1.2] group-hover:opacity-100 transition-opacity text-white/80"
                             >
                                 {metric.label}
                             </p>
