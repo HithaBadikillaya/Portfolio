@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { send } from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const [submitted, setSubmitted] = useState(false);
@@ -9,6 +9,7 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [isSending, setIsSending] = useState(false);
+    const [showFallback, setShowFallback] = useState(false);
     const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
     useEffect(() => {
@@ -17,6 +18,12 @@ const Contact = () => {
         }, 2000);
         return () => clearInterval(interval);
     }, []);
+
+    const handleMailto = () => {
+        const subject = encodeURIComponent(`Portfolio Contact: ${name || 'New Lead'}`);
+        const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:hithabadikillaya@gmail.com?subject=${subject}&body=${body}`;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,38 +46,57 @@ const Contact = () => {
             return;
         }
 
-        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim();
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim();
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
 
         const templateParams = {
             from_name: trimmedName,
-            message: trimmedMessage,
+            user_name: trimmedName,
             from_email: trimmedEmail,
+            user_email: trimmedEmail,
+            message: trimmedMessage,
             reply_to: trimmedEmail,
         };
 
         // Ensure EmailJS configuration is present
         if (!serviceId || !templateId || !publicKey) {
-            setToast({ show: true, message: 'Please try again later.', type: 'error' });
-            setTimeout(() => setToast((t) => ({ ...t, show: false })), 5000);
+            console.error('EmailJS configuration missing or invalid');
+            setShowFallback(true);
+            setToast({ show: true, message: 'Service unconfigured. Opening mail client...', type: 'error' });
+            setTimeout(() => {
+                setToast((t) => ({ ...t, show: false }));
+                handleMailto();
+            }, 2000);
             return;
         }
 
         setIsSending(true);
         try {
-            await send(serviceId, templateId, templateParams, publicKey);
+            emailjs.init(publicKey);
 
-            setIsSending(false);
-            setSubmitted(true);
-            setName(''); setEmail(''); setMessage('');
-            setToast({ show: true, message: 'Mail sent — i will get back to you soon!', type: 'success' });
-            setTimeout(() => setToast((t) => ({ ...t, show: false })), 4000);
-            setTimeout(() => setSubmitted(false), 5000);
+            const result = await emailjs.send(serviceId, templateId, templateParams);
+
+            if (result.status === 200 || result.text === 'OK') {
+                setIsSending(false);
+                setSubmitted(true);
+                setName(''); setEmail(''); setMessage('');
+                setToast({ show: true, message: 'Transmission Successful — i will get back to you soon!', type: 'success' });
+                setTimeout(() => setToast((t) => ({ ...t, show: false })), 4000);
+                setTimeout(() => setSubmitted(false), 5000);
+            } else {
+                throw new Error(result.text || 'Unknown response from server');
+            }
         } catch (err) {
             setIsSending(false);
-            console.error('EmailJS send failed', err);
-            setToast({ show: true, message: 'Failed to send message. Please try again later.', type: 'error' });
+            setShowFallback(true);
+            console.error('EmailJS transmission failed:', err);
+
+            let errorMessage = 'Transmission Failed.';
+            if (err?.text) errorMessage = err.text;
+            else if (err?.message) errorMessage = err.message;
+
+            setToast({ show: true, message: `${errorMessage} Try manual send.`, type: 'error' });
             setTimeout(() => setToast((t) => ({ ...t, show: false })), 6000);
         }
     };
@@ -106,7 +132,7 @@ const Contact = () => {
             <div className="mb-12 flex justify-between items-end">
                 <div>
                     <span className="text-secondary font-mono text-xs tracking-widest block mb-4">
-                        ssh user@hitha.dev
+                        ssh user@hitha.tech
                     </span>
                     <h2 className="text-4xl md:text-6xl font-serif text-primary">Initialize Connection</h2>
                 </div>
@@ -148,7 +174,7 @@ const Contact = () => {
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
-                                            placeholder="John Doe"
+                                            placeholder="Your Name"
                                         />
                                     </div>
                                 </div>
@@ -165,7 +191,7 @@ const Contact = () => {
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             className="bg-transparent border-none focus:ring-0 text-primary w-full outline-none caret-secondary placeholder-white/20"
-                                            placeholder="john@example.com"
+                                            placeholder="Your Email"
                                         />
                                     </div>
                                 </div>
@@ -187,7 +213,7 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                <div className="pt-6">
+                                <div className="pt-6 flex flex-wrap gap-4 items-center">
                                     <button
                                         type="submit"
                                         disabled={isSending}
@@ -196,6 +222,16 @@ const Contact = () => {
                                     >
                                         {isSending ? 'Sending…' : 'Execute_Send'}
                                     </button>
+
+                                    {showFallback && (
+                                        <button
+                                            type="button"
+                                            onClick={handleMailto}
+                                            className="text-secondary hover:text-primary text-[10px] uppercase underline decoration-secondary/30 underline-offset-4 transition-colors"
+                                        >
+                                            Send via Email App
+                                        </button>
+                                    )}
                                 </div>
                             </motion.form>
                         ) : (
