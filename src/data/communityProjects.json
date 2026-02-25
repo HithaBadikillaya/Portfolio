@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "title": "DevHost",
+        "title": "DevHost 2025",
         "link": "https://devhost.sosc.org.in",
-        "year": "2024",
+        "year": "2025",
         "image": "/assets/devhost.png",
         "role": "Frontend Lead",
         "description": "Annual flagship technical event of Sahyadri Open Source Community."
@@ -12,7 +12,7 @@
         "id": 2,
         "title": "SOSC Website",
         "link": "https://sosc.org.in",
-        "year": "2023",
+        "year": "2025",
         "image": "/assets/sosc.svg",
         "role": "Contributor",
         "description": "Official Website of Sahyadri Open Source Community."
@@ -24,6 +24,6 @@
         "year": "ongoing",
         "image": "/assets/pomelo.png",
         "role": "Frontend Lead",
-        "description": "Event hosting and management platform for student communities."
+        "description": "Test hosting and management platform"
     }
 ]

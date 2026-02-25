@@ -34,7 +34,8 @@
         "tech": [
             "React",
             "Node.js",
-            "HuggingFace"
+            "HuggingFace",
+            "Docker"
         ],
         "description": "A self-hosted app for generating meeting minutes, captions, and letters from audio or video with privacy-first design."
     }
