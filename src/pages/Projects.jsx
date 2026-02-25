@@ -1,46 +1,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const projects = [
-    {
-        id: 1,
-        title: 'Covelet',
-        link: 'https://github.com/HithaBadikillaya/covelet',
-        category: 'open source',
-        year: 'ongoing',
-        tech: ['React Native', 'Expo', 'Firebase'],
-        description: 'An open-source, group-first space for preserving shared memories as time capsules that are calm, private, and built to feel safe and reliable.'
-    },
-    {
-        id: 2,
-        title: 'CommandBrainCLI',
-        link: 'https://github.com/HithaBadikillaya/CommandBrain-CLI',
-        category: 'cli-tool',
-        year: 'completed',
-        tech: ['JS', 'Python', 'VMs'],
-        description: 'Think of it as a “CommandBrain”: type commands, see their categories visualized as a brain, and explore system commands across OSes.'
-    },
-    {
-        id: 3,
-        title: 'Papertrail',
-        link: 'https://github.com/HithaBadikillaya/Papertrail',
-        category: 'documentation',
-        year: 'ongoing',
-        tech: ['React', 'Node.js', 'HuggingFace'],
-        description: 'A self-hosted app for generating meeting minutes, captions, and letters from audio or video with privacy-first design.',
-    },
-];
-
-// fallback commits shown while real data loads (or if the fetch fails)
-const fallbackCommits = [
-    { hash: 'a1b2c3d', msg: 'fixed typo in README (again)', time: '2h ago' },
-    { hash: 'e5f6g7h', msg: 'removed console.log("here")', time: '5h ago' },
-    { hash: 'i8j9k0l', msg: 'refactored messy code into smaller messy code', time: '1d ago' },
-    { hash: 'm1n2o3p', msg: 'wip: attempting to center a div', time: '2d ago' },
-];
+import projects from '../data/projects.json';
+import communityProjects from '../data/communityProjects.json';
+import fallbackCommitsData from '../data/fallbackCommits.json';
 
 const Projects = () => {
-    const [commitLog, setCommitLog] = useState(fallbackCommits);
+    const [commitLog, setCommitLog] = useState(fallbackCommitsData);
 
     useEffect(() => {
         let mounted = true;
@@ -118,7 +84,7 @@ const Projects = () => {
             </div>
 
             {/* Main Projects Table */}
-            <div className="border border-white/10 rounded-sm overflow-hidden bg-white/5 mb-16">
+            <div className="border border-white/10 rounded-sm overflow-hidden bg-white/5 mb-24">
                 {/* Table Header */}
                 <div className="grid grid-cols-12 gap-4 p-4 border-b border-white/10 bg-white/5 text-xs font-mono uppercase tracking-widest text-secondary">
                     <div className="col-span-12 md:col-span-4">Name</div>
@@ -179,6 +145,76 @@ const Projects = () => {
                 <div className="p-2 bg-white/5 text-[10px] font-mono text-center text-primary/30">
                     {projects.length} directories listed. Click any row to open the repository on GitHub.
                 </div>
+            </div>
+
+            {/* Community Projects Section - Visual Version */}
+            <div className="mb-12">
+                <span className="text-secondary font-mono text-xs tracking-widest block mb-4 uppercase">
+                    &gt; my contributions
+                </span>
+                <h2 className="text-3xl md:text-5xl font-serif text-primary">Community Projects</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-24">
+                {communityProjects.map((project, idx) => (
+                    <motion.a
+                        key={project.id}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        whileHover={{ y: -8 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="group block"
+                    >
+                        {/* Image Container */}
+                        <div className="relative aspect-[16/10] overflow-hidden border border-white/10 rounded-sm bg-white/5 mb-6 flex items-center justify-center p-4">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${project.image.endsWith('.svg') ? 'object-contain' : 'object-cover'
+                                    }`}
+                                onError={(e) => {
+                                    e.target.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800';
+                                }}
+                            />
+
+                            {/* Status Badge */}
+                            <div className="absolute top-4 left-4 z-20">
+                                <span className={`px-2 py-1 text-[10px] font-mono tracking-tighter uppercase backdrop-blur-md border ${project.year === 'ongoing'
+                                    ? 'bg-yellow-500/20 border-yellow-500/30 text-yellow-500'
+                                    : 'bg-green-500/20 border-green-500/30 text-green-500'
+                                    }`}>
+                                    {project.year === 'ongoing' ? 'In Progress' : project.year}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="space-y-3 px-1">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-xl md:text-2xl font-serif text-primary group-hover:text-secondary transition-colors truncate pr-4">
+                                    {project.title}
+                                </h3>
+                                <span className="text-secondary opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0 shrink-0">
+                                    →
+                                </span>
+                            </div>
+                            <p className="text-sm text-primary/60 font-mono leading-relaxed line-clamp-2 min-h-[2.5rem]">
+                                {project.description}
+                            </p>
+                            <p className="text-sm text-primary font-mono leading-relaxed line-clamp-2 min-h-[2.5rem]">
+                                -&gt; {project.role}
+                            </p>
+                            <div className="pt-2">
+                                <span className="text-[10px] text-secondary/50 font-mono uppercase tracking-widest border-b border-secondary/20 pb-1 group-hover:border-secondary transition-colors">
+                                    View Project
+                                </span>
+                            </div>
+                        </div>
+                    </motion.a>
+                ))}
             </div>
 
             {/* Extra Sections Grid */}
