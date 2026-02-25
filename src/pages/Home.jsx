@@ -1,4 +1,4 @@
-import{ useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Home = () => {
@@ -47,7 +47,7 @@ const Home = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
-                
+
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -57,7 +57,7 @@ const Home = () => {
                     <div>
                         <p>
                             Hey there! good to see you, while you are here, might as well get to know me. I majorly deal with web apps, AI experiments, and small projects that catch my curiosity. I focus on building interfaces that work smoothly and feel right to use, without making anyone pull their hair out. If you&apos;re paying attention, there&apos;s a secret vault on the site for the curious.
-                        </p><br/>
+                        </p><br />
                         <p>
                             Im also active in open-source and developer communities - contributing code, improving docs, and learning together. If you&apos;d like to connect, my contact links are below or use the contact page to send me an email. Enjoy exploring the site.
                         </p>
@@ -94,7 +94,7 @@ const Home = () => {
                                     <span className="text-primary">React.js</span>
                                     <span className="text-green-400">does not break (usually)</span>
                                     <span className="text-primary">Next.js</span>
-                                    <span className="text-green-400">like butter on toast</span>
+                                    <span className="text-green-400">it works</span>
                                     <span className="text-primary">Node.js</span>
                                     <span className="text-green-400">does its thing… somehow</span>
 

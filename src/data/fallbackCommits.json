@@ -1,0 +1,22 @@
+[
+    {
+        "hash": "a1b2c3d",
+        "msg": "fixed typo in README (again)",
+        "time": "2h ago"
+    },
+    {
+        "hash": "e5f6g7h",
+        "msg": "removed console.log(\"here\")",
+        "time": "5h ago"
+    },
+    {
+        "hash": "i8j9k0l",
+        "msg": "refactored messy code into smaller messy code",
+        "time": "1d ago"
+    },
+    {
+        "hash": "m1n2o3p",
+        "msg": "wip: attempting to center a div",
+        "time": "2d ago"
+    }
+]

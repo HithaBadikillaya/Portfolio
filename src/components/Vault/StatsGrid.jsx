@@ -1,13 +1,9 @@
 import { Bubble } from 'pixel-retroui';
 import PropTypes from 'prop-types';
+import stats from '../../data/vaultStats.json';
 
 const StatsGrid = ({ yellowAccent }) => {
-    const stats = [
-        { label: 'UPTIME', value: 'ahhhhhhhh' },
-        { label: 'BUGS_FIXED', value: 'created_more' },
-        { label: 'CONFIDENCE', value: 'varies_wildly' },
-        { label: 'TABS_OPEN', value: '99+' }
-    ];
+
 
     return (
         <div className="space-y-4">

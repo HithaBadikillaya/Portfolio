@@ -1,0 +1,22 @@
+[
+    {
+        "path": "/",
+        "label": "Index",
+        "short": "Inx."
+    },
+    {
+        "path": "/projects",
+        "label": "Works",
+        "short": "Wrk."
+    },
+    {
+        "path": "/experience",
+        "label": "Career",
+        "short": "Exp."
+    },
+    {
+        "path": "/contact",
+        "label": "Contact",
+        "short": "Con."
+    }
+]

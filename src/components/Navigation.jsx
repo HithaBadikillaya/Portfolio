@@ -1,15 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import navLinks from '../data/navLinks.json';
 
 export const Navigation = () => {
     const navRef = useRef(null);
-    const links = [
-        { path: '/', label: 'Index' },
-        { path: '/projects', label: 'Works' },
-        { path: '/experience', label: 'Career' },
-        { path: '/contact', label: 'Contact' },
-    ];
 
     useEffect(() => {
         const nav = navRef.current;
@@ -48,7 +43,7 @@ export const Navigation = () => {
             ref={navRef}
             className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-8"
         >
-            {links.map((link, index) => (
+            {navLinks.map((link, index) => (
                 <NavLink
                     key={link.path}
                     to={link.path}
@@ -74,17 +69,18 @@ export const Navigation = () => {
 export const MobileNav = () => {
     return (
         <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 lg:hidden bg-paper/80 backdrop-blur-md border border-secondary/20 px-6 py-4 rounded-full z-50 flex gap-6">
-            {['/', '/projects', '/experience', '/contact'].map((path, index) => (
+            {navLinks.map((link) => (
                 <NavLink
-                    key={path}
-                    to={path}
+                    key={link.path}
+                    to={link.path}
                     className={({ isActive }) =>
                         `text-[10px] uppercase tracking-widest font-bold ${isActive ? 'text-secondary' : 'text-primary'}`
                     }
                 >
-                    {['Inx.', 'Wrk.', 'Exp.', 'Con.'][index]}
+                    {link.short}
                 </NavLink>
             ))}
         </nav>
     );
 };
+

@@ -1,27 +1,6 @@
 import { motion } from 'framer-motion';
+import experiences from '../data/experience.json';
 
-const experiences = [
-    {
-        id: 'commit-3',
-        year: '2025-09',
-        role: 'Core Team Member',
-        company: 'SOSC',
-        desc: 'Contributing to community-driven and open-source projects using structured Git workflows and peer collaboration.'    },
-    {
-        id: 'commit-2',
-        year: '2025-02',
-        role: 'Web Development Intern',
-        company: 'Zidio Development',
-        desc: 'Developed a real-time meeting platform with a distributed intern team. Implemented low-latency features using Socket.io and optimized frontend and backend workflows.'
-    },
-    {
-        id: 'commit-1',
-        year: '2024-06',
-        role: 'Full Stack Dev Intern',
-        company: 'Codelab Systems',
-        desc: 'Built a production-grade web app with React.js and Node.js. Integrated backend services with MongoDB and ensured responsive UI across devices.'
-    },
-];
 
 
 const Experience = () => {
@@ -95,7 +74,7 @@ const Experience = () => {
                     </div>
                 </div>
 
-               
+
                 <div>
                     <h3 className="text-xl font-mono text-secondary mb-8">&gt; npm list --depth=0</h3>
                     <div className="p-6 border border-white/5 bg-white/5 rounded-sm font-mono text-xs md:text-sm space-y-2 text-primary/80">
