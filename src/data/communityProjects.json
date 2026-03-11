@@ -25,5 +25,14 @@
         "image": "/assets/pomelo.png",
         "role": "Frontend Lead",
         "description": "Test hosting and management platform"
+    },
+    {
+        "id": 4,
+        "title": "Papertrail",
+        "link": "https://github.com/HithaBadikillaya/papertrail",
+        "year": "ongoing",
+        "image": "/assets/papertrail.png",
+        "role": "Maintainer",
+        "description": "A self-hosted app for generating meeting minutes, captions, and letters"
     }
 ]
