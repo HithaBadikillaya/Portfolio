@@ -20,6 +20,8 @@
 # production
 /build
 
+/public/assets
+/public/processed
 # misc
 .DS_Store
 *.pem
